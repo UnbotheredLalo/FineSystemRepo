@@ -1,17 +1,19 @@
 package commercial;
 
 import datetimeutils.DateTimeUtils;
+import ticket.Category;
+import ticket.GovAuthorities;
 import ticket.Ticket;
 
 public class Commercial extends Ticket {
-    public static final String COMMERCIAL_TYPE = "Commercial Fine";
-    private final String commercialType;
 
-    private String imposedSanction;
+    public Category commercialType = Category.COMMERCIAL ;
+    private static final int MINIMUM_FINE_COMMERCIAL = 400;
+    private static final double MAX_DISCOUNT_COMMERCIAL = 0.20;
 
-    public Commercial(String COMMERCIAL_TYPE, long fineID, DateTimeUtils dateInfo, String authorityName,
-                      String description, Boolean status) {
-        super(fineID, dateInfo, authorityName, description, status);
-        commercialType = COMMERCIAL_TYPE;
+    public Commercial(Category commercialType, long fineID, DateTimeUtils issueDate,
+                 GovAuthorities authorityName, Boolean isPaid ) {
+        super(fineID, issueDate, authorityName, isPaid);
+        this.commercialType = commercialType;
     }
 }

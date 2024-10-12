@@ -4,30 +4,25 @@ import datetimeutils.DateTimeUtils;
 
 public class Ticket {
 
-    public double fine;
     public long fineID;
-    public String govInstitution;
-    public String authorityName;
-    public DateTimeUtils dateInfo;
-    public String description;
-    public Boolean status;
+    private final GovAuthorities authorityName;
+    public DateTimeUtils issueDate;
+    public Boolean isPaid;
+    public double fine;
     private static final double UMA = 207.44;
 
-    public Ticket(long fineID, DateTimeUtils dateInfo, String authorityName,
-                  String description, Boolean status ) {
+    public Ticket(long fineID, DateTimeUtils issueDate, GovAuthorities authorityName, Boolean isPaid) {
         this.fineID = fineID;
-        this.dateInfo = dateInfo;
+        this.issueDate = issueDate;
         this.authorityName = authorityName;
-        this.description = description;
-        this.status = status;
+        this.isPaid = isPaid;
     }
 
-
     public String showDetails() {
-        String ticketInfo = "Date: " + dateInfo + "\n"
-                + "Officer Name: " + authorityName + "\n"
-                + "You've got a Ticket for: " + description + "\n"
-                + "Your Fine ID is: " + fineID + "\n";
+        String ticketInfo = "Date: " + issueDate + "\n"
+                + "Your Fine ID is: " + fineID + "\n"
+                + "Authority: " + authorityName + "\n"
+                + "Status: " + isPaid;
         return ticketInfo;
     }
 }
