@@ -1,22 +1,19 @@
 package transit;
 
 import datetimeutils.DateTimeUtils;
+import ticket.Category;
+import ticket.GovAuthorities;
 import ticket.Ticket;
 
 public class Transit extends Ticket {
 
-    public static final String TRAFFIC_TYPE = "Traffic Ticket";
-    private final String trafficType;
+    public Category trafficType = Category.TRAFFIC ;
+    private static final int MINIMUM_FINE_TRAFFIC = 1;
+    private static final double MAX_DISCOUNT_TRAFFIC = 0.50;
 
-    private String imposedSanction;
-
-    public Transit(String TRAFFIC_TYPE, long fineID, DateTimeUtils dateInfo, String authorityName,
-                         String description, Boolean status ) {
-        super(fineID, dateInfo, authorityName, description, status);
-        trafficType = TRAFFIC_TYPE;
+    public Transit(Category trafficType, long fineID, DateTimeUtils issueDate,
+                   GovAuthorities authorityName, Boolean isPaid ) {
+        super(fineID, issueDate, authorityName, isPaid);
+        this.trafficType = trafficType;
     }
-
-    public void setImposedSanction(String imposedSanction) { this.imposedSanction = imposedSanction; }
-
-    public String getImposedSanction() { return this.imposedSanction; }
 }
